@@ -1,0 +1,23 @@
+################################
+##----------CODE ACADEMY--------
+################################
+
+##################################
+#------ A Day At the Supermarket
+##################################
+
+#############
+#--3/13: Control Flow and Looping
+#############
+a = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
+even_list = []
+#i = 0
+for even in a:
+    if even % 2 == 0:
+        # "Even number in a is: %i" %even
+        # "Len of list %i" %len(even_list)
+        # CANNONT DO: even_list[i] = even
+        # CANNOT DO: i = i + 1
+        # *If you want to save all the evens in a list: even_list.append(even)
+        print even
+#*If you want to save all the evens in a list: print even_list
