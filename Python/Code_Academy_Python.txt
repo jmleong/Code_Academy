@@ -2,13 +2,13 @@
 ##----------CODE ACADEMY--------
 ################################
 
-##################################
-#------ A Day At the Supermarket
-##################################
+#########################################
+#------ Lesson: A Day At the Supermarket
+#########################################
 
-#############
-#--3/13: Control Flow and Looping
-#############
+#########
+#~~~3/13: Control Flow and Looping
+#######################################
 a = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
 even_list = []
 #i = 0
@@ -18,6 +18,106 @@ for even in a:
         # "Len of list %i" %len(even_list)
         # CANNONT DO: even_list[i] = even
         # CANNOT DO: i = i + 1
-        # *If you want to save all the evens in a list: even_list.append(even)
+        # even_list.append(even) //*If you want to save all the evens in a list
         print even
-#*If you want to save all the evens in a list: print even_list
+#print even_list //*If you want to save all the evens in a list
+
+#########
+#~~~4/13: Lists + Functions
+#######################################
+My Task)
+Write a function that counts how many times the string "fizz" appears in a list.
+
+Write a function called fizz_count that takes a list x as input.
+Create a variable count to hold the ongoing count. Initialize it to zero.
+for each item in x:, if that item is equal to the string "fizz" then increment the count variable.
+After the loop, please return the count variable.
+For example, fizz_count(["fizz","cat","fizz"]) should return 2.
+---------------------------------------------------------------------------
+# Write your function below!
+def fizz_count(x):
+    count = 0 #Initialize count to zero
+    for item in x:
+        if item == "fizz":
+            count = count + 1
+    return count
+
+print fizz_count(["fizz","cat","fizz"])
+# Returned 2
+
+#########
+#~~~4/13: String Looping
+#######################################
+As we've mentioned, strings are like lists with characters as elements. 
+You can loop through strings the same way you loop through lists! 
+While we won't ask you to do that in this section, we've put an example 
+in the editor of how looping through a string might work.
+####CODE
+for letter in "Codecademy":
+    print letter
+    
+# Empty lines to make the output pretty
+print
+print
+
+word = "Programming is fun!"
+
+for letter in word:
+    # Only print out the letter i
+    if letter == "i":
+        print letter
+        
+####Output:
+C
+o
+d
+e
+c
+a
+d
+e
+m
+y
+
+
+i
+i
+None
+
+#########
+#~~~9/13: Shopping at the Market
+#######################################
+# Dictionary of Prices
+prices = {
+    "banana": 4,
+    "apple": 2,
+    "orange": 1.5,
+    "pear": 3
+}
+
+# Dictionary of Stock
+stock = {
+    "banana": 6,
+    "apple": 0,
+    "orange": 32,
+    "pear": 15
+}
+
+## Since both dictionaries have the same keys, we can loop through
+## one dictionary and show values from both of them.
+# Loop through each key and list the price and stock amount
+for key in prices.keys():
+    print key #key name
+    print "price: %s" % prices[key] #price
+    print "stock: %s" % stock[key] #stock
+
+#Total Value of inventory
+total = 0
+for key in prices:
+    total = total + (prices[key] * stock[key])
+
+print total
+
+############################################
+#------ Lesson: Student Becomes the Teacher
+############################################
