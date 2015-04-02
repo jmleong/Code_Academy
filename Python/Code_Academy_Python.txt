@@ -121,3 +121,95 @@ print total
 ############################################
 #------ Lesson: Student Becomes the Teacher
 ############################################
+ 
+#########
+#~~~6/9: How to continue on the next line
+####################################### 
+cost = {
+    "apples": [3.5, 2.4, 2.3],
+    "bananas": [1.2, 1.8],
+}
+
+return 0.9 * average(cost["apples"]) + \
+0.1 * average(cost["bananas"])
+
+The \ character is a continuation character. 
+The following line is considered a continuation of the current line.
+
+#########
+#~~~9/9: Student Becomes the Teacher
+####################################### 
+lloyd = {
+    "name": "Lloyd",
+    "homework": [90.0, 97.0, 75.0, 92.0],
+    "quizzes": [88.0, 40.0, 94.0],
+    "tests": [75.0, 90.0]
+}
+alice = {
+    "name": "Alice",
+    "homework": [100.0, 92.0, 98.0, 100.0],
+    "quizzes": [82.0, 83.0, 91.0],
+    "tests": [89.0, 97.0]
+}
+tyler = {
+    "name": "Tyler",
+    "homework": [0.0, 87.0, 75.0, 22.0],
+    "quizzes": [0.0, 75.0, 78.0],
+    "tests": [100.0, 100.0]
+}
+
+
+# Add your function below!
+def average(lst):
+    size = len(lst)
+    total = 0
+    for score in lst:
+        total = total + score
+    return float(total)/size
+
+# Get_average function
+def get_average(student):
+    homework = average(student["homework"])
+    quiz = average(student["quizzes"])
+    tests = average(student["tests"])
+    return homework * 0.1 + quiz * 0.3 + tests * 0.6
+
+# Get_letter_grade; score is a number
+def get_letter_grade(score):
+    if score >= 90:
+        return "A"
+    elif score >= 80:
+        return "B"
+    elif score >= 70:
+        return "C"
+    elif score >= 60:
+        return "D"
+    else: 
+        return "F"
+
+# Get_class_average; students is a list containing the 3
+# students
+def get_class_average(students):
+    results = []
+    for student in students:
+        results.append(get_average(student))
+    return average(results)
+
+#test
+class_lst = [lloyd, alice, tyler]
+
+#for student in class_lst:
+#    print get_average(student)
+
+# Print Class average
+print get_class_average(class_lst)
+# Print Class Letter grade
+print get_letter_grade(get_class_average(class_lst))
+
+############################################
+#------ Lesson: 
+############################################
+ 
+#########
+#~~~6/9: 
+####################################### 
