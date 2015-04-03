@@ -1,0 +1,127 @@
+################################
+##----------CODE ACADEMY--------
+##----------Python Terms--------
+################################
+
+
+#######################################
+#String Looping
+#######################################
+
+#########
+#---Lesson: A Day At the Supermarket (4/13)
+############################################
+As we've mentioned, strings are like lists with characters as elements. 
+You can loop through strings the same way you loop through lists! 
+While we won't ask you to do that in this section, we've put an example 
+in the editor of how looping through a string might work.
+####CODE
+for letter in "Codecademy":
+    print letter
+    
+# Empty lines to make the output pretty
+print
+print
+
+word = "Programming is fun!"
+
+for letter in word:
+    # Only print out the letter i
+    if letter == "i":
+        print letter
+        
+####Output:
+C
+o
+d
+e
+c
+a
+d
+e
+m
+y
+
+
+i
+i
+None
+
+#######################################
+#Lesson: Lists and Functions 
+#######################################
+
+#########
+#---Removing Elements from Lists(4/18)
+##########################################
+1) n.pop(index) will remove the item at index from the list and return it to you
+Code:
+n = [1, 3, 5]
+n.pop(1)
+# Returns 3 (the item at index 1)
+print n
+# prints [1, 5]
+
+2) n.remove(item) will remove the actual item if it finds it:
+Code:
+n.remove(1)
+# Removes 1 from the list,
+# NOT the item at index 1
+print n
+# prints [3, 5]
+
+3) del(n[1]) is like .pop in that it will remove the item at the given index, but it won't return it:
+Code:
+del(n[1])
+# Doesn't return anything
+print n
+# prints [1, 5]
+
+#########
+#---Passing a Range into a function(14/18)
+##########################################
+The Python range() function is just a shortcut for generating a list, 
+so you can use ranges in all the same places you can use lists.
+
+1)range(stop)
+    range(6) # => [0,1,2,3,4,5]
+
+2)range(1,6) # => [1,2,3,4,5]
+    range(1,6) # => [1,2,3,4,5]
+
+3)range(start, stop, step)
+    range(1,6,3) # => [1,4]
+
+In all cases, the range() function returns a list of numbers from start up to 
+(but not including) stop. Each item increases by step.
+If omitted, start defaults to zero and step defaults to one.
+
+#########
+#---Iterating over a List in a function(15/18)
+###############################################
+Method 1 - for item in list:
+Is useful to loop through the list, but it's not possible to modify the list this way.
+
+for item in list:
+    print item
+    
+Method 2 - iterate through indexes:
+Uses indexes to loop through the list, making it possible to also modify the list if needed.
+
+for i in range(len(list)):
+    print list[i]
+
+#########
+#---Using a list of lists in a function(18/18)
+###############################################
+n = [[1, 2, 3], [4, 5, 6, 7, 8, 9]]
+# Add your function here
+def flatten(lists):
+    results = []
+    for numbers in lists:
+        for items in numbers:
+            results.append(items)
+    return results
+
+print flatten(n)
+#[1, 2, 3, 4, 5, 6, 7, 8, 9]

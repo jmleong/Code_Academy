@@ -1,5 +1,6 @@
 ################################
 ##----------CODE ACADEMY--------
+##----------Python Examples-----
 ################################
 
 #########################################
@@ -46,45 +47,6 @@ print fizz_count(["fizz","cat","fizz"])
 # Returned 2
 
 #########
-#~~~4/13: String Looping
-#######################################
-As we've mentioned, strings are like lists with characters as elements. 
-You can loop through strings the same way you loop through lists! 
-While we won't ask you to do that in this section, we've put an example 
-in the editor of how looping through a string might work.
-####CODE
-for letter in "Codecademy":
-    print letter
-    
-# Empty lines to make the output pretty
-print
-print
-
-word = "Programming is fun!"
-
-for letter in word:
-    # Only print out the letter i
-    if letter == "i":
-        print letter
-        
-####Output:
-C
-o
-d
-e
-c
-a
-d
-e
-m
-y
-
-
-i
-i
-None
-
-#########
 #~~~9/13: Shopping at the Market
 #######################################
 # Dictionary of Prices
@@ -106,6 +68,7 @@ stock = {
 ## Since both dictionaries have the same keys, we can loop through
 ## one dictionary and show values from both of them.
 # Loop through each key and list the price and stock amount
+
 for key in prices.keys():
     print key #key name
     print "price: %s" % prices[key] #price
@@ -207,9 +170,81 @@ print get_class_average(class_lst)
 print get_letter_grade(get_class_average(class_lst))
 
 ############################################
-#------ Lesson: 
+#------ Lesson: Lists and Functions
 ############################################
  
 #########
-#~~~6/9: 
-####################################### 
+#~~~10/18: Modifying an element of a list in a function
+#########################################################
+def list_function(x):
+    #Add 3 to the item at index 1 and store result in index 1
+    x[1] = x[1] + 3
+    return x
+
+n = [3, 5, 7]
+print list_function(n)
+#[3, 8, 7]
+
+#########
+#~~~12/18: Printing out a list item by item in a function
+##########################################################
+n = [3, 5, 7]
+
+def print_list(x):
+    for i in range(0, len(x)):
+        print x[i]
+
+print print_list(n)
+
+#########
+#~~~14/18: Passing a range into a function
+##########################################################
+def my_function(x):
+    for i in range(0, len(x)):
+        x[i] = x[i] * 2
+    return x
+
+print my_function(range(3)) 
+#[0, 2, 4]
+
+#########
+#~~~15/18: Iterating over a List in a function
+###############################################
+n = [3, 5, 7]
+
+def total(numbers):
+    result = 0
+    for i in range(len(numbers)):
+        result += numbers[i]
+    return result
+
+print total(n)
+#15
+
+#########
+#~~~17/18: Using two lists as two arguments in a function
+##########################################################
+m = [1, 2, 3]
+n = [4, 5, 6]
+
+# Add your code here!
+def join_lists(x, y):
+    return x + y
+
+print join_lists(m, n)
+# You want this to print [1, 2, 3, 4, 5, 6]
+
+#########
+#~~~18/18: Using a list of lists in a function
+###############################################
+n = [[1, 2, 3], [4, 5, 6, 7, 8, 9]]
+# Add your function here
+def flatten(lists):
+    results = []
+    for numbers in lists:
+        for items in numbers:
+            results.append(items)
+    return results
+
+print flatten(n)
+#[1, 2, 3, 4, 5, 6, 7, 8, 9]
