@@ -125,3 +125,94 @@ def flatten(lists):
 
 print flatten(n)
 #[1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+#######################################
+#Lesson: Battleship
+#######################################
+
+#########
+#---Making a 5x5 Grid using lists
+###############################################
+board = []
+
+# Create a 5x5 grid of Os
+for lst in range(5):
+    board.append(["O"] * 5)
+
+# Function to print board in a Grid
+def print_board(board):
+    for row in range(5):
+        print board[row]
+
+print_board(board)
+#['O', 'O', 'O', 'O', 'O']
+#['O', 'O', 'O', 'O', 'O']
+#['O', 'O', 'O', 'O', 'O']
+#['O', 'O', 'O', 'O', 'O']
+#['O', 'O', 'O', 'O', 'O']
+
+#Because print ['O'] * 5 
+#= ['O', 'O', 'O', 'O', 'O']
+
+#########
+#---Printing a List without [] and 'a: .join
+###############################################
+letters = ['a', 'b', 'c', 'd']
+
+1) print " ".join(letters)
+# We print a b c d. The .join method uses the string to combine the items in the list.
+
+2) print "---".join(letters)
+# We print a---b---c---d. We are calling the .join function on the "---" string.
+
+#########
+#--- randint(low, high) function from the random module
+########################################################
+# We generate a number from one to six inclusive.
+
+from random import randint
+#//or import random
+dice = randint(1, 6)
+#//dice = random.randint(1, 6)
+#or 
+random_row = randint(0, len(board)-1)
+
+#########
+#--- Conditional Statement: not in
+########################################################
+#The example below checks if either x or y are outside those ranges. 
+#The \ character just continues the if statement onto the next line.
+
+if x not in range(8) or \
+   y not in range(3):
+        print "Outside the range"
+
+#######################################
+#Lesson: Loops
+#######################################
+
+#########
+#--- While Loops (1/19)
+########################################################
+// First: checks to see if loop_condition is true. If so it enters the while loop
+// Second: it executes
+// Third: Once it reaches the end, it will loop back and see if loop_condition is still true.
+//        If loop_condition is false, it exits while loop
+
+while loop_condition:
+    execute
+
+#########
+#--- While/ else Loops (7/19)
+########################################################
+//Something completely different about Python is the while/else construction. 
+//while/else is similar to if/else, but there is a difference: the else block will execute anytime
+//the loop condition is evaluated to False. This means that it will execute (1)if the loop is never entered 
+//or (2)if the loop exits normally. If the loop exits as the result of a break, the else will not be executed.
+
+while loop_condition:
+    execute
+    
+else:
+    execute
+---------
