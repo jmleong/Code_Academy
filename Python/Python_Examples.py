@@ -284,9 +284,9 @@ print_board(board)
 #########
 #---is_int (3/15)
 ###############################################
-//  Find integers: 7.0 is an int
-//    Hint: If the difference between a number and that same number rounded down is 
-//      greater than zero, what does that say about that particular number?
+#  Find integers: 7.0 is an int
+#    Hint: If the difference between a number and that same number rounded down is 
+#      greater than zero, what does that say about that particular number?
 def is_int(x):
     if round(x) == x:
         return True
@@ -301,10 +301,10 @@ print is_int(5.1)   # False
 #########
 #---reverse (7/15)
 ###############################################
-//  Define a function called reverse that takes a string textand returns that string in reverse.
-//  For example: reverse("abcd") should return "dcba".
-//  You may not use reversed or [::-1] to help you with this.
-//  You may get a string containing special characters (for example, !, @, or #).
+#  Define a function called reverse that takes a string textand returns that string in reverse.
+#  For example: reverse("abcd") should return "dcba".
+#  You may not use reversed or [::-1] to help you with this.
+#  You may get a string containing special characters (for example, !, @, or #).
 
 def reverse(text):
     if len(text) <= 1:
@@ -317,10 +317,10 @@ print reverse('hello')
 #########
 #---anti_vowel (8/15)
 ###############################################
-//  Define a function called anti_vowel that takes one string, text, as input and returns the text with all of the vowels removed.
-//    For example: anti_vowel("Hey You!") should return "Hy Y!".
-//    Don't count Y as a vowel.
-//    Make sure to remove lowercase and uppercase vowels.
+#  Define a function called anti_vowel that takes one string, text, as input and returns the text with all of the vowels removed.
+#    For example: anti_vowel("Hey You!") should return "Hy Y!".
+#    Don't count Y as a vowel.
+#    Make sure to remove lowercase and uppercase vowels.
 
 def anti_vowel(text):
     vowel = ['a','e','i','o','u','A','E','I','O','U']
@@ -334,14 +334,14 @@ print anti_vowel("How are you?")
 #########
 #---scrabble_score (9/15)
 ###############################################
-//  Define a function scrabble_score that takes a string word as input and returns the equivalent scrabble score for that word.
-//    Assume your input is only one word containing no spaces or punctuation.
-//    As mentioned, no need to worry about score multipliers!
-//    Your function should work even if the letters you get are uppercase, lowercase, or a mix.
-//    Assume that you're only given non-empty strings.
-//    Hint: Have your function loop through the word that you are given as input and look up the score for each letter in the score dictionary. 
-//      Add the score for each letter into a total of some sort.
-//      Remember you can use the string.lower() method to make your string lower case!
+#  Define a function scrabble_score that takes a string word as input and returns the equivalent scrabble score for that word.
+#    Assume your input is only one word containing no spaces or punctuation.
+#    As mentioned, no need to worry about score multipliers!
+#    Your function should work even if the letters you get are uppercase, lowercase, or a mix.
+#    Assume that you're only given non-empty strings.
+#    Hint: Have your function loop through the word that you are given as input and look up the score for each letter in the score dictionary. 
+#      Add the score for each letter into a total of some sort.
+#      Remember you can use the string.lower() method to make your string lower case!
 
 score = {"a": 1, "c": 3, "b": 3, "e": 1, "d": 2, "g": 2, 
          "f": 4, "i": 1, "h": 4, "k": 5, "j": 8, "m": 3, 
@@ -361,23 +361,23 @@ print scrabble_score('Helix')
 #########
 #---censor (10/15)
 ###############################################
-//  Write a function called censor that takes two strings, text and word, as input. It should return the text with the word you chose replaced with asterisks.
-//    For example:
-//      censor("this hack is wack hack", "hack") 
-//    should return
-//      "this **** is wack ****"
-//  Assume your input strings won't contain punctuation or upper case letters.
-//  The number of asterisks you put should correspond to the number of letters in the censored word.
-//    Hint: You can use
-//      string.split()
-//      # and 
-//      " ".join(list)
-//    to help you here.
-//    Remember:
-//      "*" * 4 equals "****"
-//    After splitting the string with string.split(), you can loop through the indices in 
-//    the list and replace the words you are looking for with their asterisk equivalent. 
-//    Join the list at the end to get your sentence!
+#  Write a function called censor that takes two strings, text and word, as input. It should return the text with the word you chose replaced with asterisks.
+#    For example:
+#      censor("this hack is wack hack", "hack") 
+#    should return
+#      "this **** is wack ****"
+#  Assume your input strings won't contain punctuation or upper case letters.
+#  The number of asterisks you put should correspond to the number of letters in the censored word.
+#    Hint: You can use
+#      string.split()
+#      # and 
+#      " ".join(list)
+#    to help you here.
+#    Remember:
+#      "*" * 4 equals "****"
+#    After splitting the string with string.split(), you can loop through the indices in 
+#    the list and replace the words you are looking for with their asterisk equivalent. 
+#    Join the list at the end to get your sentence!
 
 #My Code 
 def censor(text, word):
@@ -403,13 +403,13 @@ def censor(text, word):
 #########
 #---count (11/15)
 ###############################################
-//  Define a function called count that has two arguments called sequence and item.
-//  Return the number of times the item occurs in the list.
-//  For example: count([1,2,1,1], 1) should return 3 (because 1 appears 3 times in the list).
-//    There is a list method in Python that you can use for this, but you should do it the long way for practice.
-//    Your function should return an integer.
-//    The item you input may be an integer, string, float, or even another list!
-//    Be careful not to use list as a variable name in your code—it's a reserved word in Python!
+#  Define a function called count that has two arguments called sequence and item.
+#  Return the number of times the item occurs in the list.
+#  For example: count([1,2,1,1], 1) should return 3 (because 1 appears 3 times in the list).
+#    There is a list method in Python that you can use for this, but you should do it the long way for practice.
+#    Your function should return an integer.
+#    The item you input may be an integer, string, float, or even another list!
+#    Be careful not to use list as a variable name in your code—it's a reserved word in Python!
 
 #My Code 
 def count(sequence, item):
@@ -427,11 +427,11 @@ def count(sequence, item):
 #########
 #---purify (12/15)
 ###############################################
-//  Define a function called purify that takes in a list of numbers, removes all odd numbers in the list,
-//  and returns the result.
-//  For example, purify([1,2,3]) should return [2].
-//  Do not directly modify the list you are given as input; instead, return a new list with only the even
-//  numbers.
+#  Define a function called purify that takes in a list of numbers, removes all odd numbers in the list,
+#  and returns the result.
+#  For example, purify([1,2,3]) should return [2].
+#  Do not directly modify the list you are given as input; instead, return a new list with only the even
+#  numbers.
 
 #My Code
 def purify(numbers):
@@ -450,11 +450,11 @@ def purify(sequence):
 #########
 #---product (13/15)
 ###############################################
-//  Define a function called product that takes a list of integers as input and returns the product of all of
-//  the elements in the list.
-//  For example: product([4, 5, 5]) should return 100 (because 4 * 5 * 5 is 100).
-//  Don't worry about the list being empty.
-//  Your function should return an integer.
+#  Define a function called product that takes a list of integers as input and returns the product of all of
+#  the elements in the list.
+#  For example: product([4, 5, 5]) should return 100 (because 4 * 5 * 5 is 100).
+#  Don't worry about the list being empty.
+#  Your function should return an integer.
 
 #My Code
 def product(numbers):
@@ -472,19 +472,19 @@ print product([4, 5, 5])
 #########
 #---remove_duplicates(14/15)
 ###############################################
-//  Write a function remove_duplicates that takes in a list and removes elements of the list that are the same.
-//  For example: remove_duplicates([1,1,2,2]) should return [1,2].
-//  1. Don't remove every occurrence, since you need to keep a single occurrence of a number.
-//  2. The order in which you present your output does not matter. So returning [1,2,3] is the same as returning [3,1,2].
-//  3. Do not modify the list you take as input! Instead, return a new list.
-//    Hint: The easiest way to approach this problem is to create a new list in your function, loop through your input list, 
-//    and add items from your input list to your new list if the current item is not already contained in your new list. 
-//    Using the "a not in b" syntax might help you here.
-//        "a not in b" syntax
-//    Also, note that destructively modifying a list while you are looping through it is bad practice and will likely lead to
-//    bugs somewhere down the line! That's why we always make a fresh copy to work on.
+#  Write a function remove_duplicates that takes in a list and removes elements of the list that are the same.
+#  For example: remove_duplicates([1,1,2,2]) should return [1,2].
+#  1. Don't remove every occurrence, since you need to keep a single occurrence of a number.
+#  2. The order in which you present your output does not matter. So returning [1,2,3] is the same as returning [3,1,2].
+#  3. Do not modify the list you take as input! Instead, return a new list.
+#    Hint: The easiest way to approach this problem is to create a new list in your function, loop through your input list, 
+#    and add items from your input list to your new list if the current item is not already contained in your new list. 
+#    Using the "a not in b" syntax might help you here.
+#        "a not in b" syntax
+#    Also, note that destructively modifying a list while you are looping through it is bad practice and will likely lead to
+#    bugs somewhere down the line! That's why we always make a fresh copy to work on.
 
-#My Code
+# My Code
 def remove_duplicates(numbers):
     newlst = []
     for number in numbers:
@@ -493,3 +493,40 @@ def remove_duplicates(numbers):
     return newlst
 
 print remove_duplicates([1,1,2,2,3,4,4])
+
+############################################
+#Lesson 10: Introduction to BIT Wise operators
+############################################
+
+#########
+#---The Man Behind the Bit Mask (11/14)
+########################################################
+# A bit mask is just a variable that aids you with bitwise operations. A bit mask can help you turn specific bits on, turn others off, or just collect data from an integer about which bits are on or off.
+#
+#    num  = 0b1100
+#    mask = 0b0100
+#    desired = num & mask
+#    if desired > 0:
+#            print "Bit was on"
+#
+# In the example above, we want to see if the third bit from the right is on.
+#
+# First, we first create a variable num containing the number 12, or 0b1100.
+# Next, we create a mask with the third bit on.
+# Then, we use a bitwise-and operation to see if the third bit from the right of num is on.
+# If desired is greater than zero, then the third bit of num must have been one.
+#
+#Problem:
+# 1. Define a function, check_bit4, with one argument, input, an integer.
+# 2. It should check to see if the fourth bit from the right is on.
+# 3. If the bit is on, return "on" (not print!)
+# 4. If the bit is off, return "off".
+
+# My Code
+def check_bit4(input):
+    mask = 0b1000
+    desired = input & mask
+    if desired > 0:
+        return "on"
+    else:
+        return "off"

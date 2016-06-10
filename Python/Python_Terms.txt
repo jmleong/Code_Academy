@@ -1,4 +1,4 @@
-################################
+﻿################################
 ##----------CODE ACADEMY--------
 ##----------Python Terms--------
 ################################
@@ -286,3 +286,1254 @@ for f in fruits:
 else:
     print 'A fine selection of fruits!'
 
+#######################################
+#Lesson: Advanced Python Topics
+#######################################
+
+#########
+--- The 'in' Operator (3/18)
+########################################################
+For iterating over lists, tuples, dictionaries, and strings, Python also includes a special keyword: in. You can use in very intuitively, like so:
+
+for number in range(5):
+    print number,
+
+d = { "name": "Eric", "age": 26 }
+for key in d:
+    print key, d[key],
+
+for letter in "Eric":
+    print letter,  # note the comma!
+
+In the example above, first we create and iterate through a range, printing out 0 1 2 3 4. Note that the trailing comma ensures that we keep printing on the same line.
+Next, we create a dictionary and iterate through, printing out age 26 name Eric. Dictionaries have no specific order.
+Finally, we iterate through the letters of a string, printing out E r i c.
+
+#########
+--- Building Lists: for/in and if (4/18)
+########################################################
+Let's say you wanted to build a list of the numbers from 0 to 50 (inclusive). We could do this pretty easily:
+
+my_list = range(51)
+But what if we wanted to generate a list according to some logic—for example, a list of all the even numbers from 0 to 50?
+
+Python's answer to this is the list comprehension. List comprehensions are a powerful way to generate lists using the for/in and if keywords we've learned.
+
+	evens_to_50 = [i for i in range(51) if i % 2 == 0]
+	print evens_to_50
+
+#########
+--- List Slicing Syntax (7/18)
+########################################################
+List slicing allows us to access elements of a list in a concise manner. The syntax looks like this:
+
+    [start:end:stride] # you can add an 'if' statement after the range
+
+Where start describes where the slice starts (inclusive), end is where it ends (exclusive), and stride describes the space between items in the sliced list. 
+For example, a stride of 2 would select every other item from the original list to place in the sliced list.
+
+    l = [i ** 2 for i in range(1, 11)]
+    # Should be [1, 4, 9, 16, 25, 36, 49, 64, 81, 100]
+
+    print l[0:9:2] 
+    #Output [1, 9, 25, 49, 81]
+ 
+ Ex:
+ Use a list comprehension to create a list, threes_and_fives, that consists only of the numbers between 1 and 15 (inclusive) that are evenly divisible by 3 or 5.
+    
+    threes_and_fives = [x for x in range(1,16) if x%3 == 0 or x%5 == 0]
+    print threes_and_fives
+
+#########
+--- Omitting Indices (8/18)
+########################################################
+    to_five = ['A', 'B', 'C', 'D', 'E']
+
+    print to_five[3:]
+    # prints ['D', 'E'] 
+
+    print to_five[:2]
+    # prints ['A', 'B']
+
+    print to_five[::2]
+    # print ['A', 'C', 'E']
+
+The default starting index is 0.
+The default ending index is the end of the list.
+The default stride is 1.
+
+#########
+--- Reversing a List (9/18)
+########################################################
+We have seen that a positive stride progresses through the list from left to right.
+A negative stride progresses through the list from right to left.
+    letters = ['A', 'B', 'C', 'D', 'E']
+    print letters[::-1]
+    #['E', 'D', 'C', 'B', 'A']
+
+#########
+--- Anonymous Functions: lambda and functional programming (12/18)
+########################################################
+One of the more powerful aspects of Python is that it allows for a style of programming called functional programming, 
+which means that you're allowed to pass functions around just as if they were variables or values. 
+Sometimes we take this for granted, but not all languages allow this!
+
+Check out the code at the right. See the lambda bit? Typing
+    lambda x: x % 3 == 0
+Is the same as
+    def by_three(x):
+        return x % 3 == 0
+Only we don't need to actually give the function a name; it does its work and returns a value without one. 
+That's why the function the lambda creates is an anonymous function.
+
+    my_list = range(16)
+    print filter(lambda x: x % 3 == 0, my_list)
+    #Output = [0, 3, 6, 9, 12, 15]
+
+When we pass the lambda to filter, filter uses the lambda to determine what to filter, 
+and the second argument (my_list, which is just the numbers 0 – 15) is the list it does the filtering on.
+
+Ex:
+Create a list, squares, that consists of the squares of the numbers 1 to 10. A list comprehension could be useful here!
+Use filter() and a lambda expression to print out only the squares that are between 30 and 70 (inclusive).
+
+    squares = [x**2 for x in range(1,11)]
+    print filter(lambda x: 30 <= x <= 70, squares)
+    #Output = [36, 49, 64]
+
+############################################
+#Lesson 10: Introduction to BIT Wise operators
+############################################
+
+#########
+--- Just a Little Bit (1/14)
+########################################################
+    print 5 >> 4  # Right Shift = 0
+    print 5 << 1  # Left Shift  = 10
+    print 8 & 5   # Bitwise AND = 0
+    print 9 | 4   # Bitwise OR  = 13
+    print 12 ^ 42 # Bitwise XOR = 38
+    print ~88     # Bitwise NOT = -89
+    
+#########
+--- The Base 2 Number System (2/14)
+########################################################    
+The rightmost bit is the 1's bit (two to the zero power), the next bit is the 2's bit (two to the first), then 4, 8, 16, 32, and so on.
+
+The binary number '1010' is 10 in base 2 because the 8's bit and the 2's bit are "on":
+
+8's bit  4's bit  2's bit  1's bit
+    1       0       1      0 
+    8   +   0    +  2   +  0  = 10 
+In Python, you can write numbers in binary format by starting the number with 0b. When doing so, the numbers can be operated on like any other number!
+    print 0b1,    #1
+    print 0b10,   #2
+    print 0b11,   #3
+    print 0b100,  #4
+    print 0b101,  #5
+    print 0b110,  #6
+    print 0b111   #7
+    print "******"
+    print 0b1 + 0b11
+    print 0b11 * 0b11
+    
+    #Output
+    1 2 3 4 5 6 7
+    ******
+    4
+    9
+
+#########
+--- The bin(); oct(); hex() Function (4/14)
+########################################################
+bin() takes an integer as input and returns the binary representation of that integer in a string. 
+(Keep in mind that after using the bin function, you can no longer operate on the value like a number.)
+You can also represent numbers in base 8 and base 16 using the oct() and hex() functions.
+
+    print bin(5) #0b101
+    
+#########
+--- int()'s Second Parameter (5/14)
+########################################################
+Python has an int() function that you've seen a bit of already. It can turn non-integer input into an integer, like this:
+
+    int("42")
+    # ==> 42
+What you might not know is that the int function actually has an optional second parameter.
+
+    int("110", 2)
+    # ==> 6
+When given a string containing a number and the base that number is in, the function will return the value of that number converted to base ten.
+
+Ex:
+    print int("1",2)        #1
+    print int("10",2)       #2
+    print int("111",2)      #7
+    print int("0b100",2)    #4
+    print int(bin(5),2)     #5
+    print int("11001001",2) #201
+    
+#########
+--- Slide to the Left! Slide to the Right! (6/14)
+########################################################
+The block below shows how these operators work on the bit level. Note that in the diagram, the shift is always a positive integer:
+
+    #Format ( value '<<' or '>>' amount shifted) 
+
+    # Left Bit Shift (<<)  "multiplying by two"
+    0b000001 << 2 == 0b000100 (1 << 2 = 4)
+    0b000101 << 3 == 0b101000 (5 << 3 = 40)       
+
+    # Right Bit Shift (>>) "floor dividing"
+    0b0010100 >> 3 == 0b000010 (20 >> 3 = 2)
+    0b0000010 >> 2 == 0b000000 (2 >> 2 = 0) 
+
+This operation is mathematically equivalent to floor dividing and multiplying by 2 (respectively) for every time you shift, 
+but it's often easier just to think of it as shifting all the 1s and 0s left or right by the specified number of slots.
+Note that you can only do bitwise operations on an integer. Trying to do them on strings or floats will result in nonsensical output!
+
+#########
+--- A BIT of This AND That: '&' (7/14)
+########################################################
+The bitwise AND (&) operator compares two numbers on a bit level and returns a number where the bits of that number are turned on if 
+the corresponding bits of both numbers are 1. For example:
+
+     a:   00101010   42
+     b:   00001111   15       
+===================
+ a & b:   00001010   10
+
+As you can see, the 2's bit and the 8's bit are the only bits that are on in both a and b, so a & b only contains those bits. 
+Note that using the & operator can only result in a number that is less than or equal to the smaller of the two values.
+So remember, for every given bit in a and b:
+
+    0 & 0 = 0
+    0 & 1 = 0
+    1 & 0 = 0
+    1 & 1 = 1
+
+Therefore,
+    0b111 (7) & 0b1010 (10) = 0b10 (2)
+
+#########
+--- A BIT of This OR That: '|' (8/14)
+########################################################
+The bitwise OR (|) operator compares two numbers on a bit level and returns a number where the bits of that number are turned on if 
+either of the corresponding bits of either number are 1. For example:
+
+    a:  00101010  42
+    b:  00001111  15       
+================
+a | b:  00101111  47
+
+Note that the bitwise | operator can only create results that are greater than or equal to the larger of the two integer inputs.
+So remember, for every given bit in a and b:
+
+    0 | 0 = 0
+    0 | 1 = 1 
+    1 | 0 = 1
+    1 | 1 = 1
+
+Meaning
+    110 (6) | 1010 (10) = 1110 (14)
+ 
+#########
+--- This XOR That: '^' (9/14)
+########################################################
+The XOR (^) or exclusive or operator compares two numbers on a bit level and returns a number where the bits of that number are turned on if 
+either of the corresponding bits of the two numbers are 1, but not both.
+
+    a:  00101010   42
+    b:  00001111   15       
+================
+a ^ b:  00100101   37
+
+Keep in mind that if a bit is off in both numbers, it stays off in the result. Note that XOR-ing a number with itself will always result in 0.
+So remember, for every given bit in a and b:
+
+0 ^ 0 = 0
+0 ^ 1 = 1
+1 ^ 0 = 1
+1 ^ 1 = 0
+Therefore:
+
+ 111 (7) ^ 1010 (10) = 1101 (13)
+ 
+#########
+--- See? This is NOT That Hard: '~' (10/14)
+########################################################
+The bitwise NOT operator (~) just flips all of the bits in a single number. What this actually means to the computer is actually very complicated, 
+so we're not going to get into it. Just know that mathematically, this is equivalent to adding one to the number and then making it negative.
+    print ~1    = -2
+    print ~2    = -3
+    print ~3    = -4
+    print ~42   = -43
+    print ~123  = -124
+    
+############################################
+#Lesson 11: Introduction to Classes
+############################################
+
+#########
+--- Why Use Classes? (1/18)
+########################################################
+Python is an object-oriented programming language, which means it manipulates programming constructs called objects. 
+You can think of an object as a single data structure that contains data as well as functions; functions of objects are called methods. 
+For example, any time you call
+    len("Eric")
+Python is checking to see whether the string object you passed it has a length, and if it does, it returns the value associated with that attribute. 
+When you call
+    my_dict.items()
+Python checks to see if my_dict has an items() method (which all dictionaries have) and executes that method if it finds it.
+
+But what makes "Eric" a string and my_dict a dictionary? The fact that they're instances of the str and dict classes, respectively. 
+A class is just a way of organizing and producing objects with similar attributes and methods.
+
+Ex:
+    class Fruit(object):
+        """A class that makes various tasty fruits."""
+        def __init__(self, name, color, flavor, poisonous):
+            self.name = name
+            self.color = color
+            self.flavor = flavor
+            self.poisonous = poisonous
+
+        def description(self):
+            print "I'm a %s %s and I taste %s." % (self.color, self.name, self.flavor)
+
+        def is_edible(self):
+            if not self.poisonous:
+                print "Yep! I'm edible."
+            else:
+                print "Don't eat me! I am super poisonous."
+
+    lemon = Fruit("lemon", "yellow", "sour", False)
+
+    lemon.description()
+    lemon.is_edible()
+
+Output:
+    I'm a yellow lemon and I taste sour.
+    Yep! I'm edible.
+    
+#########
+--- Class Syntax (2/18)
+########################################################
+A basic class consists only of the class keyword, the name of the class, and the class from which the new class inherits in parentheses.
+(We'll get to inheritance soon.) For now, our classes will inherit from the object class, like so:
+
+    class NewClass(object):
+        # Class magic here
+
+This gives them the powers and abilities of a Python object. By convention, user-defined Python class names start with a capital letter.
+
+Instructions
+Create a class called Animal in the editor. For now, in the body of your class, use the pass keyword.
+(pass doesn't do anything, but it's useful as a placeholder in areas of your code where Python expects an expression.)
+
+My Code:
+    class Animal(object):
+        pass
+
+#########
+--- Classier Classes: __init__() (3/18)
+########################################################     
+You may have noticed in our example back in the first exercise that we started our class definition off with an odd-looking function: __init__(). 
+This function is required for classes, and it's used to initialize the objects it creates. __init__() always takes at least one argument, 
+self, that refers to the object being created. You can think of __init__() as the function that "boots up" each object the class creates.
+
+    class Animal(object):
+        def __init__(self):
+            pass
+
+#########
+--- Let's Not Get Too Selfish: __init__() (4/18)
+######################################################## 
+Excellent! Let's make one more tweak to our class definition, then go ahead and instantiate (create) our first object.
+So far, __init__() only takes one parameter: self. This is a Python convention; there's nothing magic about the word self. 
+However, it's overwhelmingly common to use self as the first parameter in __init__(), so you should do this so that other people will understand your code.
+The part that is magic is the fact that self is the first parameter passed to __init__(). Python will use the first parameter that __init__() receives 
+to refer to the object being created; this is why it's often called self, since this parameter gives the object being created its identity.
+
+    class Animal(object):
+        def __init__(self, name):
+            self.name = name
+            
+#########
+--- Instantiating Your First Object: dot notation (5/18)
+########################################################
+Perfect! Now we're ready to start creating objects.
+
+We can access attributes of our objects using dot notation Here's how it works:
+
+    class Square(object):
+      def __init__(self):
+        self.sides = 4
+
+    my_shape = Square()
+    print my_shape.sides
+
+1. First we create a class named Square with an attribute sides.
+2. Outside the class definition, we create a new instance of Square named my_shape and access that attribute using my_shape.sides.
+
+Ex:
+1. Outside the Animal class definition, create a variable named zebra and set it equal to Animal("Jeffrey").
+2. Then print out zebra's name.
+
+    class Animal(object):
+        def __init__(self, name):
+            self.name = name
+            
+    zebra = Animal("Jeffrey")
+    print zebra.name
+
+#########
+--- More on __init__() and self: example (6/18)
+########################################################    
+Now that you're starting to understand how classes and objects work, it's worth delving a bit more into __init__() and self. They can be confusing!
+
+As mentioned, you can think of __init__() as the method that "boots up" a class' instance object: the init bit is short for "initialize."
+
+The first argument __init__() gets is used to refer to the instance object, and by convention, that argument is called self. If you add additional arguments—for instance, 
+a name and age for your animal—setting each of those equal to self.name and self.age in the body of __init__() will make it so that when you create an instance object of 
+your Animal class, you need to give each instance a name and an age, and those will be associated with the particular instance you create.
+
+Ex:
+Check out the examples in the editor. See how __init__() "boots up" each object to expect a name and an age, then uses self.name and self.age to assign those names 
+and ages to each object? Add a third attribute, is_hungry to __init__(), and click Save & Submit Code to see the results.
+
+    # Class definition
+    class Animal(object):
+        """Makes cute animals."""
+        # For initializing our instance objects
+        def __init__(self, name, age, is_hungry):
+            self.name = name
+            self.age = age
+            self.is_hungry = is_hungry
+
+    # Note that self is only used in the __init__()
+    # function definition; we don't need to pass it
+    # to our instance objects.
+
+    zebra = Animal("Jeffrey", 2, True)
+    giraffe = Animal("Bruce", 1, False)
+    panda = Animal("Chad", 7, True)
+
+    print zebra.name, zebra.age, zebra.is_hungry
+    print giraffe.name, giraffe.age, giraffe.is_hungry
+    print panda.name, panda.age, panda.is_hungry
+    
+#########
+--- Class Scope: Scope (7/18)
+########################################################
+Another important aspect of Python classes is scope. The scope of a variable is the context in which it's visible to the program.
+It may surprise you to learn that not all variables are accessible to all parts of a Python program at all times. When dealing with classes, you can have variables that are 
+available everywhere (global variables), variables that are only available to members of a certain class (member variables), and variables that are only available to particular 
+instances of a class (instance variables).
+The same goes for functions: some are available everywhere, some are only available to members of a certain class, and still others are only available to particular instance objects.
+
+Ex:
+Check out the code in the editor. Note that each individual animal gets its own name and age (since they're all initialized individually), but they all have access to the member 
+variable is_alive, since they're all members of the Animal class.
+
+    class Animal(object):
+        """Makes cute animals."""
+        is_alive = True
+        def __init__(self, name, age):
+            self.name = name
+            self.age = age
+
+    zebra = Animal("Jeffrey", 2)
+    giraffe = Animal("Bruce", 1)
+    panda = Animal("Chad", 7)
+
+    print zebra.name, zebra.age, zebra.is_alive
+    print giraffe.name, giraffe.age, giraffe.is_alive
+    print panda.name, panda.age, panda.is_alive
+
+#########
+--- Class Scope: A Methodical Approach; Methods (8/18)
+########################################################
+When a class has its own functions, those functions are called methods. You've already seen one such method: __init__(). But you can also define your own methods!
+
+Ex:
+Add a method, description, to your Animal class. Using two separate print statements, it should print out the name and age of the animal it's called on. 
+Then, create an instance of Animal, hippo (with whatever name and age you like), and call its description method.
+
+Hint:
+Remember to pass self as an argument to description. Otherwise, printing self.name and self.age won't work, since Python won't know which self (that is, which object) you're talking about!
+
+Your method should look something like this:
+
+def description(self):
+    print self.name
+    print self.age
+After that, all you need to do is create a hippo and call its description method with hippo.description()!
+
+My Code:
+    class Animal(object):
+        """Makes cute animals."""
+        is_alive = True
+        def __init__(self, name, age):
+            self.name = name
+            self.age = age
+        #Adding a method called description
+        def description(self):
+            print self.name
+            print self.age
+    #Creating an instance
+    hippo = Animal("Bob", 100)
+
+    #Calling description method
+    hippo.description()
+
+#########
+--- Class Scope: They're Multiplying (9/18)
+########################################################
+A class can have any number of member variables. These are variables that are available to all members of a class.
+
+    hippo = Animal("Jake", 12)
+    cat = Animal("Boots", 3)
+    print hippo.is_alive
+    hippo.is_alive = False
+    print hippo.is_alive
+    print cat.is_alive
+In the example above, we create two instances of an Animal.
+Then we print out True, the default value stored in hippo's is_alive member variable.
+Next, we set that to False and print it out to make sure.
+Finally, we print out True, the value stored in cat's is_alive member variable. We only changed the variable in hippo, not in cat.
+Let's add another member variable to Animal.
+
+Ex:
+    class Animal(object):
+        """Makes cute animals."""
+        is_alive = True
+        health = "good"
+        def __init__(self, name, age):
+            self.name = name
+            self.age = age
+        #Adding a method called description
+        def description(self):
+            print self.name
+            print self.age
+    #Creating an instance
+    hippo = Animal("Bob", 100)
+    sloth = Animal("Clark", 5)
+    ocelot = Animal("Bruce", 25)
+
+    #Calling description method
+    hippo.description()
+    print hippo.health
+    print sloth.health
+    print ocelot.health
+    
+#########
+--- Class Scope: It's Not All Animal and Fruits (10/18)
+########################################################
+Create an instance of ShoppingCart called my_cart. Initialize it with any values you like, then use the add_item method to add an item to your cart.
+Since the ShoppingCart class has an __init__() method that takes a customer name, I'd create my cart like so:
+    my_cart = ShoppingCart("Eric")
+Calling the add_item() method might then be:
+    my_cart.add_item("Ukelele", 10)
+
+My Code:
+    class ShoppingCart(object):
+        """Creates shopping cart objects
+        for users of our fine website."""
+        items_in_cart = {}
+        def __init__(self, customer_name):
+            self.customer_name = customer_name
+
+        def add_item(self, product, price):
+            """Add product to the cart."""
+            if not product in self.items_in_cart:
+                self.items_in_cart[product] = price
+                print product + " added."
+            else:
+                print product + " is already in the cart."
+
+        def remove_item(self, product):
+            """Remove product from the cart."""
+            if product in self.items_in_cart:
+                del self.items_in_cart[product]
+                print product + " removed."
+            else:
+                print product + " is not in the cart."
+
+    #Creating an inistance called my_cart
+    my_cart = ShoppingCart("Jordan")
+
+    #Adding items to cart
+    my_cart.add_item("Ukelele", 10)
+    my_cart.add_item("Bomb", 0.50)
+    my_cart.add_item("Stripper", 100)
+    my_cart.add_item("Stripper", 100)
+
+    #Removing item from cart
+    my_cart.remove_item("Bomb")
+
+#########
+--- Class Scope: Warning: Here Be Dragons; Inheritance (11/18)
+########################################################
+Inheritance is a tricky concept, so let's go through it step by step.
+Inheritance is the process by which one class takes on the attributes and methods of another, and it's used to express an is-a relationship. 
+For example, a Panda is a bear, so a Panda class could inherit from a Bear class. However, a Toyota is not a Tractor, so it shouldn't inherit from 
+the Tractor class (even if they have a lot of attributes and methods in common). Instead, both Toyota and Tractor could ultimately inherit from the same Vehicle class.
+
+Ex:
+Check out the code in the editor. We've defined a class, Customer, as well as a ReturningCustomer class that inherits from Customer. 
+Note that we don't define the display_cart method in the body of ReturningCustomer, but it will still have access to that method via inheritance.
+
+    class Customer(object):
+        """Produces objects that represent customers."""
+        def __init__(self, customer_id):
+            self.customer_id = customer_id
+
+        def display_cart(self):
+            print "I'm a string that stands in for the contents of your shopping cart!"
+
+    class ReturningCustomer(Customer):
+        """For customers of the repeat variety."""
+        def display_order_history(self):
+            print "I'm a string that stands in for your order history!"
+
+    monty_python = ReturningCustomer("ID: 12345")
+    monty_python.display_cart()
+    monty_python.display_order_history()
+
+#########
+--- Class Scope: Inheritance Syntax (12/18)
+########################################################
+In Python, inheritance works like this:
+    class DerivedClass(BaseClass):
+        # code goes here
+where DerivedClass is the new class you're making and BaseClass is the class from which that new class inherits.
+
+Ex:
+On lines 1-4, we've created a class named Shape.
+1.  Create your own class, Triangle, that inherits from Shape, like this:
+    class Triangle(Shape):
+        # code goes here
+2.  Inside the Triangle class, write an __init__() function that takes four arguments: self, side1, side2, and side3.
+3.  Inside the __init__() function, set self.side1 = side1, self.side2 = side2, and self.side3 = side3.
+
+    class Shape(object):
+        """Makes shapes!"""
+        def __init__(self, number_of_sides):
+            self.number_of_sides = number_of_sides
+
+    # Add your Triangle class below!
+    class Triangle(Shape):
+        def __init__(self, side1, side2, side3):
+            self.side1 = side1
+            self.side2 = side2
+            self.side3 = side3
+        
+#########
+--- Class Scope: Override! (13/18)
+########################################################
+Sometimes you'll want one class that inherits from another to not only take on the methods and attributes of its parent, but to override one or more of them.
+
+    class Employee(object):
+        def __init__(self, name):
+            self.name = name
+        def greet(self, other):
+            print "Hello, %s" % other.name
+
+    class CEO(Employee):
+        def greet(self, other):
+            print "Get back to work, %s!" % other.name
+
+    ceo = CEO("Emily")
+    emp = Employee("Steve")
+    emp.greet(ceo)
+    # Hello, Emily
+    ceo.greet(emp)
+    # Get back to work, Steve!
+
+Rather than have a separate greet_underling method for our CEO, we override (or re-create) the greet method on top of the base Employee.greet method. 
+This way, we don't need to know what type of Employee we have before we greet another Employee.
+
+Ex:
+1.  Create a new class, PartTimeEmployee, that inherits from Employee.
+2.  Give your derived class a calculate_wage method that overrides Employee's. It should take self and hours as arguments.
+3.  Because PartTimeEmployee.calculate_wage overrides Employee.calculate_wage, it still needs to set self.hours = hours.
+4.  It should return the part-time employee's number of hours worked multiplied by 12.00 (that is, they get $12.00 per hour instead of $20.00).
+
+    class Employee(object):
+        """Models real-life employees!"""
+        def __init__(self, employee_name):
+            self.employee_name = employee_name
+
+        def calculate_wage(self, hours):
+            self.hours = hours
+            return hours * 20.00
+
+    # Add your code below!
+    class PartTimeEmployee(Employee):
+        def calculate_wage(self, hours):
+            self.hours = hours
+            return hours * 12.00
+            
+#########
+--- Class Scope: This Looks Like a Job For...; parent/superclass and subclass (14/18)
+####################################################################################
+On the flip side, sometimes you'll be working with a derived class (or subclass) and realize that you've overwritten a method or attribute defined in that class' base class 
+(also called a parent or superclass) that you actually need. Have no fear! You can directly access the attributes or methods of a superclass with Python's built-in super call.
+The syntax looks like this:
+
+    class Derived(Base):
+       def m(self):
+           return super(Derived, self).m()
+           
+Where m() is a method from the base class.
+
+Ex:
+First, inside your PartTimeEmployee class:
+1.  Add a new method called full_time_wage with the arguments self and hours.
+2.  That method should return the result of a super call to the calculate_wage method of PartTimeEmployee's parent class. Use the example above for help.
+
+Then, after your class:
+1.  Create an instance of the PartTimeEmployee class called milton. Don't forget to give it a name.
+2.  Finally, print out the result of calling his full_time_wage method. You should see his wage printed out at $20.00 per hour! (That is, for 10 hours, the result should be 200.00.)
+
+Hint:
+You super call should look something like this:
+    def full_time_wage(self, hours):
+        return super(PartTimeEmployee, self).method(args)
+Where method is the method you want (calculate_wage) and args are the arguments that method takes.
+
+My Code:
+    class Employee(object):
+        """Models real-life employees!"""
+        def __init__(self, employee_name):
+            self.employee_name = employee_name
+
+        def calculate_wage(self, hours):
+            self.hours = hours
+            return hours * 20.00
+
+    # Add your code below!
+    class PartTimeEmployee(Employee):
+        def calculate_wage(self, hours):
+            self.hours = hours
+            return hours * 12.00
+        def full_time_wage(self, hours):
+            return super(PartTimeEmployee, self).calculate_wage(hours)
+
+    #Add instance
+    milton = PartTimeEmployee("Miltom")
+    print milton.full_time_wage(10)
+
+#########
+--- Class Scope: Class Basics (15-18/18)
+########################################################
+class Triangle(object):
+    number_of_sides = 3
+    
+    def __init__(self, angle1, angle2, angle3):
+        self.angle1 = angle1
+        self.angle2 = angle2
+        self.angle3 = angle3
+    
+    #Create a Method
+    def check_angles(self):
+        if self.angle1 + self.angle2 + self.angle3 == 180:
+            return True
+        else:
+            return False
+
+#Add Instance
+my_triangle = Triangle(90, 30, 60)
+print my_triangle.number_of_sides
+print my_triangle.check_angles()
+
+#Equilateral class that inherits Triangle
+class Equilateral(Triangle):
+    angle = 60
+    
+    def __init__(self):
+        self.angle1 = self.angle
+        self.angle2 = self.angle
+        self.angle3 = self.angle
+        
+############################################
+#Lesson 11 (Part 2): Classes
+############################################
+
+#########
+--- Review of Classes: Basics (1/11)
+########################################################
+Classes can be very useful for storing complicated objects with their own methods and variables. 
+Defining a class is much like defining a function, but we use the class keyword instead. 
+We also use the word object in parentheses because we want our classes to inherit the object class. 
+This means that our class has all the properties of an object, which is the simplest, most basic class. 
+Later we'll see that classes can inherit other, more complicated classes. An empty class would look like this:
+
+    class ClassName(object):
+        #class statement goes here
+
+#########
+--- Review of Classes: Create an instance of a class (2/11)
+######################################################## 
+We can use classes to create new objects, which we say are instances of those classes.
+Creating a new instance of a class is as easy as saying:
+    
+    newObject = ClassName()
+
+Ex:
+Define a new class named "Car". For now, since we have to put something inside the class, use the pass keyword.
+
+    class Car(object):
+        pass
+    
+#########
+--- Review of Classes: Class member variables (3/11)
+######################################################## 
+Classes can have member variables that store information about each class object. 
+We call them member variables since they are information that belongs to the class object.
+Creating member variables and assigning them initial values is as easy as creating any other variable:
+
+class ClassName(object):
+    memberVariable = "initialValue"
+    
+Ex:
+Inside your Car class, replace the pass statement with a new member variable named condition and give it an initial value of the string "new". 
+
+    class Car(object):
+        condition = "new"
+
+    #Adding an Instance
+    my_car = Car()
+
+#########
+--- Review of Classes: Calling Class Member Variables (4/11)
+######################################################## 
+Each class object we create has its own set of member variables. Since we've created an object my_car that is an instance of the Car class, 
+my_car should already have a member variable named condition. This attribute gets assigned a value as soon as my_car is created.
+
+    class Car(object):
+        condition = "new"
+
+    #Adding an Instance
+    my_car = Car()
+    print my_car.condition
+
+#########
+--- Review of Classes: Initializing a Class (5/11)
+######################################################## 
+There is a special function named __init__() that gets called whenever we create a new instance of a class. It exists by default, even though we don't see it. 
+However, we can define our own __init__() function inside the class, overwriting the default version. We might want to do this in order to provide more 
+input variables, just like we would with any other function.
+The first argument passed to __init__() must always be the keyword self - this is how the object keeps track of itself internally - but we can pass additional variables after that.
+In order to assign a variable to the class (creating a member variable), we use dot notation. For instance, if we passed newVariable into our class, 
+inside the __init__() function we would say:
+
+    self.new_variable = new_variable
+
+Ex:
+Define the __init__() function of the Car class to take four inputs: self, model, color, and mpg. 
+Assign the last three inputs to member variables of the same name by using the self keyword.
+
+Then, modify the object my_car to provide the following inputs at initialization:
+
+model = "DeLorean"
+color = "silver"
+mpg = 88
+
+You don't need to include the self keyword when you create an instance of a class, because self gets added to the beginning of your list of 
+inputs automatically by the class definition.
+
+My Code:
+    class Car(object):
+        condition = "new"
+        
+        def __init__(self, model, color, mpg):
+            self.model = model
+            self.color = color
+            self.mpg = mpg
+
+    #Adding an Instance and Initializing
+    my_car = Car("DeLorean", "silver", 88)
+    print my_car.condition
+
+#########
+--- Review of Classes: Refering to Member Variables (6/11)
+######################################################## 
+Calling class member variables works the same whether those values are created within the class (like our car's condition) or 
+values are passed into the new object at initialization. We use dot notation to access the member variables of classes since those variables belong to the object.
+For instance, if we had created a member variable named new_variable, a new instance of the class named new_object could access this variable by saying:
+
+    new_object.new_variable
+
+Ex:
+Now that you've created my_car print its member variables:
+
+First print the model of my_car. Click "Stuck? Get a hint!" for an example.
+Then print out the color of my_car.
+Then print out the mpg of my_car.
+
+    class Car(object):
+        condition = "new"
+        
+        def __init__(self, model, color, mpg):
+            self.model = model
+            self.color = color
+            self.mpg = mpg
+
+    #Adding an Instance and Initializing
+    my_car = Car("DeLorean", "silver", 88)
+    print my_car.condition
+    print my_car.model
+    print my_car.color
+    print my_car.mpg
+
+#########
+--- Using Classes: Creating Class Methods (7/11)
+######################################################## 
+Besides member variables, classes can also have their own methods. For example:
+
+    class Square(object):
+      def __init__(self, side):
+        self.side = side
+
+      def perimeter(self):
+        return self.side * 4
+        
+The perimeter() class method is identical to defining any other function, except that it is written inside of the Square class definition.
+Just like when we defined __init__(), you need to provide self as the first argument of any class method.
+
+Ex:
+1.  Inside the Car class, add a method named display_car() to Car that will reference the Car's member variables to return the string, 
+    "This is a [color] [model] with [mpg] MPG." You can use the str() function to turn your mpg into a string when creating the display string.
+2.  Replace the individual print statements with a single print command that displays the result of calling my_car.display_car()
+
+    class Car(object):
+        condition = "new"
+        
+        def __init__(self, model, color, mpg):
+            self.model = model
+            self.color = color
+            self.mpg   = mpg
+            
+        def display_car(self):
+            return "This is a %s %s with %s MPG." %(self.color, self.model, self.mpg)
+
+    my_car = Car("DeLorean", "silver", 88)
+    print my_car.condition
+    print my_car.display_car()
+
+#########
+--- Using Classes: Modifying member variables (8/11)
+######################################################## 
+We can modify variables that belong to a class the same way that we initialize those member variables. 
+This can be useful when we want to change the value a variable takes on based on something that happens inside of a class method.
+
+Ex:
+1.  Inside the Car class, add a method drive_car() that sets self.condition to the string "used".
+2.  Remove the call to my_car.display_car() and instead print only the condition of your car.
+3.  Then drive your car by calling the drive_car() method.
+4.  Finally, print the condition of your car again to see how its value changes.
+
+    class Car(object):
+        condition = "new"
+        
+        def __init__(self, model, color, mpg):
+            self.model = model
+            self.color = color
+            self.mpg   = mpg
+            
+        def display_car(self):
+            return "This is a %s %s with %s MPG." %(self.color, self.model, self.mpg)
+            
+        def drive_car(self):
+            self.condition = "used"
+
+    my_car = Car("DeLorean", "silver", 88)
+    print my_car.condition
+    my_car.drive_car()
+    print my_car.condition
+
+#########
+--- Using Classes: Inheritance (9/11)
+######################################################## 
+One of the benefits of classes is that we can create more complicated classes that inherit variables or methods from their parent classes. 
+This saves us time and helps us build more complicated objects, since these child classes can also include additional variables or methods.
+We define a "child" class that inherits all of the variables and functions from its "parent" class like so:
+
+    class ChildClass(ParentClass):
+        # new variables and functions go here
+    
+Normally we use object as the parent class because it is the most basic type of class, but by specifying a different class, we can inherit more complicated functionality.
+
+Ex:
+Create a class ElectricCar that inherits from Car. 
+Give your new class an __init__() method of that includes a "battery_type" member variable in addition to the model, color and mpg.
+Then, create an electric car named "my_car" with a "molten salt" battery_type. Supply values of your choice for the other three inputs (model, color and mpg).
+
+    class Car(object):
+        condition = "new"
+        
+        def __init__(self, model, color, mpg):
+            self.model = model
+            self.color = color
+            self.mpg   = mpg
+            
+        def display_car(self):
+            return "This is a %s %s with %s MPG." %(self.color, self.model, self.mpg)
+            
+        def drive_car(self):
+            self.condition = "used"
+
+    #Electric Car Class
+    class ElectricCar(Car):
+        def __init__(self, model, color, mpg, battery_type):
+            super(ElectricCar, self).__init__(model, color, mpg)
+            self.battery_type = battery_type
+            
+
+    my_car = Car("DeLorean", "silver", 88)
+    print my_car.condition
+    my_car.drive_car()
+    print my_car.condition
+
+    #Creating Electric Car
+    my_car = ElectricCar("DeLorean", "silver", 88, "molten salt")
+
+#########
+--- Using Classes: Overriding Methods (10/11)
+######################################################## 
+Since our ElectricCar is a more specialized type of Car, we can give the ElectricCar its own drive_car() method that has different functionality than the original Car class's.
+
+Ex:
+1.  Inside ElectricCar add a new method drive_car() that changes the car's condition to the string "like new".
+2.  Then, outside of ElectricCar, print the condition of my_car
+3.  Next, drive my_car by calling the drive_car() function
+4.  Finally, print the condition of my_car again
+
+class Car(object):
+    condition = "new"
+    
+    def __init__(self, model, color, mpg):
+        self.model = model
+        self.color = color
+        self.mpg   = mpg
+        
+    def display_car(self):
+        #return "This is a %s %s with %s MPG." %(self.color, self.model, self.mpg)
+        return "This is a " + self.color + " " + self.model +" with " + str(self.mpg) +" MPG."
+        
+    def drive_car(self):
+        self.condition = "used"
+
+#Electric Car Class
+class ElectricCar(Car):
+    def __init__(self, model, color, mpg, battery_type):
+        super(ElectricCar, self).__init__(model, color, mpg)
+        self.battery_type = battery_type
+        
+    def drive_car(self):
+        self.condition = "like new"
+        
+
+my_car = Car("DeLorean", "silver", 88)
+print my_car.display_car()
+
+#Creating Electric Car
+my_car = ElectricCar("DeLorean", "silver", 88, "molten salt")
+print my_car.condition
+my_car.drive_car()
+print my_car.condition
+
+#########
+--- Using Classes: Building Useful Classes; __repr__() (11/11)
+###############################################################
+Chances are, you won't be designing Car classes in the real world anytime soon. 
+Usually, classes are most useful for holding and accessing abstract collections of data.
+One useful class method to override is the built-in __repr__() method, which is short for representation; 
+by providing a return value in this method, we can tell Python how to represent an object of our class (for instance, when using a print statement).
+
+Ex:
+1.  Define a Point3D class that inherits from object
+2.  Inside the Point3D class, define an __init__() function that accepts self, x, y, and z, and assigns these numbers to the member variables self.x, self.y, self.z
+3.  Define a __repr__() method that returns "(%d, %d, %d)" % (self.x, self.y, self.z). This tells Python to represent this object in the following format: (x, y, z).
+4.  Outside the class definition, create a variable named my_point containing a new instance of Point3D with x=1, y=2, and z=3.
+5.  Finally, print my_point.
+
+    class Point3D(object):
+        def __init__(self, x, y, z):
+            self.x = x
+            self.y = y
+            self.z = z
+            
+        #Representation
+        def __repr__(self):
+            return "(%d, %d, %d)" % (self.x, self.y, self.z)
+
+    my_point = Point3D(1, 2, 3)
+    print my_point
+
+############################################
+#Lesson 12 : File Input/Output
+############################################
+
+#########
+--- File I/O: The open() Function (2/9)
+###############################################################
+    f = open("output.txt", "w")
+This told Python to open output.txt in "w" mode ("w" stands for "write"). We stored the result of this operation in a file object, f.
+Doing this opens the file in write-mode and prepares Python to send data into the file.
+
+Ex:
+Create a variable, my_file, and set it equal to calling the open() function on output.txt. In this case, pass "r+" as a second argument
+to the function so the file will allow you to read and write to it! (See the Hint for details.)
+
+    #Create a new file that reads and writes
+    my_file = open("output.txt", "r+")
+
+#########
+--- File I/O: Writing (3/9)
+###############################################################
+Our goal in this exercise will be to write each element of that list to output.txt (shown in a new tab above the editor) with each number on its own line.
+We can write to a Python file like so:
+
+    my_file.write("Data to be written")
+    
+The write() function takes a string argument, so we'll need to do a few things here:
+
+You must close the file. You do this simply by calling my_file.close() (we did this for you in the last exercise).
+If you don't close your file, Python won't write to it properly. From here on out, you gotta close your files!
+
+Ex:
+1.  Iterate over my_list to get each value
+2.  Use my_file.write() to write each value to output.txt
+3.  Make sure to call str() on the iterating data so .write() will accept it
+4.  Make sure to add a newline ("\n") after each element to ensure each will appear on its own line.
+5.  Use my_file.close() to close the file when you're done.
+
+    my_list = [i**2 for i in range(1,11)]
+
+    my_file = open("output.txt", "r+")
+
+    # Add your code below!
+    for i in my_list:
+        my_file.write("%s\n" %str(i))
+        #my_file.write(str(i)+"\n")
+
+    my_file.close()
+
+#########
+--- File I/O: Reading (4/9)
+###############################################################
+    
+    print my_file.read()
+
+Ex:
+1.  Declare a variable, my_file, and set it equal to the file object returned by calling open() with both "output.txt" and "r".
+2.  Next, print the result of using .read() on my_file, like the example above.
+3.  Make sure to .close() your file when you're done with it! All kinds of doom will happen if you don't.
+
+my_file = open("output.txt","r")
+print my_file.read()
+my_file.close()
+
+#########
+--- File I/O: Reading Between the lines (5/9)
+###############################################################
+What if we want to read from a file line by line, rather than pulling the entire file in at once. 
+Thankfully, Python includes a readline() function that does exactly that.
+If you open a file and call .readline() on the file object, you'll get the first line 
+of the file; subsequent calls to .readline() will return successive lines.
+
+Ex:
+1.  Declare a new variable my_file and store the result of calling open() on the "text.txt" file in "r"ead-only mode.
+2.  On three separate lines, print out the result of calling my_file.readline(). See how it gets the next line each time?
+3.  Don't forget to close() your file when you're done with it!)
+
+    #write
+    my_writeFile = open("text.txt","w")
+    my_writeFile.write("This\n"+"is\n"+"stupid")
+    my_writeFile.close()
+
+    #read 
+    my_file = open("text.txt", "r")
+    print my_file.readline()
+    print my_file.readline()
+    print my_file.readline()
+
+    my_file.close()
+
+#########
+--- File I/O: PSA Buffering Data (6/9)
+###############################################################
+We keep telling you that you always need to close your files after you're done writing to them. Here's why!
+During the I/O process, data is buffered: this means that it is held in a temporary location before being written to the file.
+Python doesn't flush the buffer—that is, write data to the file—until it's sure you're done writing. One way to do this is to 
+close the file. If you write to a file without closing, the data won't make it to the target file.
+
+Ex:
+# Open the file for reading
+read_file = open("text.txt", "r")
+
+# Use a second file handler to open the file for writing
+write_file = open("text.txt", "w")
+# Write to the file
+write_file.write("Not closing files is VERY BAD.")
+
+write_file.close()
+
+# Try to read from the file
+print read_file.read()
+read_file.close()
+
+#########
+--- File I/O: The 'with' and 'as' Keywords (7/9)
+###############################################################
+Is there a way to get Python to automatically close our files for us?
+Of course there is. This is Python.
+You may not know this, but file objects contain a special pair of built-in methods: __enter__() and __exit__(). 
+The details aren't important, but what is important is that when a file object's __exit__() method is invoked, 
+it automatically closes the file. How do we invoke this method? With with and as.
+The syntax looks like this:
+
+    with open("file", "mode") as variable:
+        # Read or write to the file
+
+Ex:
+Check out the example in the editor. Note that we don't explicitly close() our file, and remember that if we don't close a 
+file, our data will get stuck in the buffer. Click Save & Submit Code and check out text.txt to see the results.
+    
+    with open("text.txt", "w") as textfile:
+        textfile.write("Success!")
+
+#########
+--- File I/O: Case Closed (9/9)
+###############################################################    
+Finally, we'll want a way to test whether a file we've opened is closed. Sometimes we'll have a lot of file objects open, and if we're not careful, 
+they won't all be closed. How can we test this?
+
+    f = open("bg.txt")
+    f.closed
+    # False
+    f.close()
+    f.closed
+    # True
+
+Python file objects have a closed attribute which is True when the file is closed and False otherwise.
+By checking file_object.closed, we'll know whether our file is closed and can call close() on it if it's still open
+
+Ex:
+Below your with...as code, do two things:
+1.  Check if the file is not .closed.
+2.  If that's the case, call .close() on it. 
+3.  (You don't need an else here, since your if statement should do nothing if .closed is True.)
+4.  After your if statement, print out the value of my_file.closed to make sure your file is really closed.
+
+    with open("text.txt","w") as my_file:
+        my_file.write("I hope this works!")
+
+    #Check if file is closed
+    if my_file.closed == False:
+        my_file.close()
+
+    print my_file.closed
