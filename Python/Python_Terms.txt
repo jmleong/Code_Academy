@@ -3,6 +3,448 @@
 ##----------Python Terms--------
 ################################
 
+#######################################
+#Date and Time
+#######################################
+
+#########
+#---Getting the Current Date and Time (2/6)
+############################################
+    from datetime import datetime
+    print datetime.now()
+
+The first line imports the datetime library so that we can use it.
+The second line will print out the current date and time.
+
+#########
+#---Extracting Information (3/6)
+############################################
+    from datetime import datetime
+
+    now = datetime.now()
+    print now.year
+    print now.month
+    print now.day
+
+You already have the first two lines.
+In the third line, we take the year (and only the year) from the variable now and store it in current_year.
+In the fourth and fifth lines, we store the month and day from now.
+
+#########
+#---Hot Date (4/6)
+############################################
+What if we want to print today's date in the following format? mm/dd/yyyy. Let's use string substitution again!
+
+    from datetime import datetime
+    now = datetime.now()
+
+    print '%s-%s-%s' % (now.year, now.month, now.day)
+    # will print: 2014-02-19
+    
+Remember that the % operator will fill the %s placeholders in the string on the left with the strings in the parentheses on the right.
+In the above example, we print 2014-02-19 (if today is February 19th, 2014), but you are going to print out 02/19/2014.
+
+#########
+#---Pretty Time (5/6)
+############################################
+    from datetime import datetime
+    now = datetime.now()
+
+    print '%s:%s:%s' % (now.hour, now.minute, now.second)
+
+Similar to the last exercise, print the current time in the pretty form of hh:mm:ss.
+
+
+#######################################
+#Conditional and Control Flow
+#######################################
+
+#########
+#---Compare Closely! (2/15)
+############################################
+There are six comparators:
+
+1.  Equal to (==)
+2.  Not equal to (!=)
+3.  Less than (<)
+4.  Less than or equal to (<=)
+5.  Greater than (>)
+6.  Greater than or equal to (>=)
+
+#########
+#---Boolean Operators (9/15)
+######################################################
+Boolean operators aren't just evaluated from left to right. Just like with arithmetic operators, there's an order of operations for boolean operators:
+
+1.  not is evaluated first;
+2.  and is evaluated next;
+3.  or is evaluated last.
+
+#########
+#---If, Elif, Else (14/15)
+######################################################
+if 8 > 9:
+    print "I don't get printed!"
+elif 8 < 9:
+    print "I get printed!"
+else:
+    print "I also don't get printed!"
+    
+#########
+#---The Big if (15/15)
+######################################################
+Comparators:
+    3 < 4
+    5 >= 5
+    10 == 10
+    12 != 13
+    
+Boolean operators:
+    True or False 
+    (3 < 4) and (5 >= 5)
+    this() and not that()
+    
+Conditional statements:
+    if this_might_be_true():
+        print "This really is true."
+    elif that_might_be_true():
+        print "That is true."
+    else:
+        print "None of the above."
+
+#######################################
+#Functions
+#######################################
+
+#########
+#---Importing Functions: Generic Import (8/19)
+################################################
+There is a Python module named math that includes a number of useful variables and functions, and sqrt() is one of those functions. 
+In order to access math, all you need is the import keyword. When you simply import a module this way, it's called a generic import.
+
+    import math
+    print "%0.2f" %math.sqrt(25)
+    print math.sqrt(25)
+
+#########
+#---Importing Functions: Function Import (9/19)
+################################################
+It's possible to import only certain variables or functions from a given module. Pulling in just a single function from a module is 
+called a function import, and it's done with the from keyword:
+
+    from module import function
+
+Now you can just type sqrt() to get the square root of a number—no more math.sqrt()!
+
+# Import *just* the sqrt function from math on line 3!
+    from math import sqrt
+    print sqrt(25)
+
+#########
+#---Importing Functions: Universal Import (10/19)
+################################################    
+What if we still want all of the variables and functions in a module but don't want to have to constantly type math.?
+Universal import can handle this for you. The syntax for this is:
+
+    from module import *
+    
+Universal imports may look great on the surface, but they're not a good idea for one very important reason: they fill your 
+program with a ton of variable and function names without the safety of those names still being associated with the module(s) they came from.
+If you have a function of your very own named 'sqrt' and you 'import math', your function is safe: there is your sqrt and there is 'math.sqrt'. 
+If you do 'from math import *', however, you have a problem: namely, two different functions with the exact same name.
+Even if your own definitions don't directly conflict with names from imported modules, if you 'import *' from several modules at once, 
+you won't be able to figure out which variable or function came from where.
+For these reasons, it's best to stick with either 'import module' and type 'module.name' or just import specific variables and functions from various modules as needed.
+    
+    import math            # Imports the math module
+    everything = dir(math) # Sets everything to a list of things from math
+    print everything       # Prints 'em all!
+    
+#########
+#---On Beyond String: Built in Functions (12/19)
+################################################
+You already know about some of the built-in functions we've used with strings, such as .upper(), .lower(), str(), and len(). 
+
+    def biggest_number(*args):
+        print max(args)
+        return max(args)
+        
+    def smallest_number(*args):
+        print min(args)
+        return min(args)
+
+    def distance_from_zero(arg):
+        print abs(arg)
+        return abs(arg)
+
+
+    biggest_number(-10, -5, 5, 10)
+    smallest_number(-10, -5, 5, 10)
+    distance_from_zero(-10)
+
+#########
+#---max() (13/19)
+#######################################
+The max() function takes any number of arguments and returns the largest one. 
+("Largest" can have odd definitions here, so it's best to use max() on integers and floats, where the results are straightforward, and not on other objects, like strings.)
+
+For example, max(1,2,3) will return 3 (the largest number in the set of arguments).
+
+#########
+#---min() (14/19)
+#######################################
+min() then returns the smallest of a given series of arguments.
+
+# Set minimum to the min value of any set of numbers on line 3!
+minimum =min(100,-10,-2,-100)
+print minimum
+
+#########
+#---abs() (15/19)
+#######################################
+The abs() function returns the absolute value of the number it takes as an argument—that is,
+that number's distance from 0 on an imagined number line. For instance, 3 and -3 both have the same absolute value: 3. 
+
+    absolute = abs(-42)
+    print absolute
+
+#########
+#---type() (16/19)
+#######################################
+Finally, the type() function returns the type of the data it receives as an argument. If you ask Python to do the following:
+
+    print type(42)
+    print type(4.2)
+    print type('spam')
+    Python will output:
+
+    <type 'int'>
+    <type 'float'>
+    <type 'str'>
+
+
+#######################################
+#Lists and Dictionaries
+#######################################
+
+#########
+#---Introduction to Lists (1/14)
+#######################################
+
+    list_name = [item_1, item_2]
+    empty_list = []
+
+Ex:
+    zoo_animals = ["pangolin", "cassowary", "sloth", "monkey"];
+
+    if len(zoo_animals) > 3:
+        print "The first animal at the zoo is the " + zoo_animals[0]
+        print "The second animal at the zoo is the " + zoo_animals[1]
+        print "The third animal at the zoo is the " + zoo_animals[2]
+        print "The fourth animal at the zoo is the %s" %zoo_animals[3]
+
+#########
+#---Access by Index (2/14)
+#######################################
+    
+    list_name[index]
+
+List indices begin with 0, not 1! You access the first item in a list like this: list_name[0]. The second item in a list is at index 1: list_name[1].
+
+#########
+#---list_name.append() (4/14)
+#######################################
+A list doesn't have to have a fixed length. You can add items to the end of a list any time you like!
+
+    letters = ['a', 'b', 'c']
+    letters.append('d')
+    print len(letters)
+    print letters
+    
+In the above example, we first create a list called letters.
+Then, we add the string 'd' to the end of the letters list.
+Next, we print out 4, the length of the letters list.
+Finally, we print out ['a', 'b', 'c', 'd'].
+
+#########
+#---List Slicing (5/14)
+#######################################
+Sometimes, you only want to access a portion of a list.
+
+    letters = ['a', 'b', 'c', 'd', 'e']
+    slice = letters[1:3]
+    print slice
+    print letters
+    
+In the above example, we first create a list called letters.
+Then, we take a subsection and store it in the slice list. We start at the index before the colon and continue up to but not including the index after the colon.
+Next, we print out ['b', 'c']. Remember that we start counting indices from 0 and that we stopped before index 3.
+Finally, we print out ['a', 'b', 'c', 'd', 'e'], just to show that we did not modify the original letters list.
+
+#########
+#---Slicing Lists and Strings (6/14)
+#######################################
+You can slice a string exactly like a list! In fact, you can think of strings as lists of characters: each character is a sequential item in the list, starting from index 0.
+
+    my_list[:2]
+    # Grabs the first two items
+    
+    my_list[3:]
+    # Grabs the fourth through last items
+
+If your list slice includes the very first or last item in a list (or a string), the index for that item doesn't have to be included.
+
+#########
+#---Maintaining Order: .index(item) and .insert(index,item) (7/14)
+######################################################################
+Sometimes you need to search for an item in a list.
+
+    animals = ["ant", "bat", "cat"]
+    print animals.index("bat")
+
+First, we create a list called animals with three strings.
+Then, we print the first index that contains the string "bat", which will print 1.
+
+We can also insert items into a list.
+
+    animals.insert(1, "dog")
+    print animals
+
+We insert "dog" at index 1, which moves everything down by 1.
+We print out ["ant", "dog", "bat", "cat"]
+
+Ex:
+    animals = ["aardvark", "badger", "duck", "emu", "fennec fox"]
+    duck_index = animals.index('duck')    # Use index() to find "duck"
+
+    # Your code here!
+    animals.insert(duck_index, 'cobra')
+
+
+    print animals # Observe what prints after the insert operation
+    print animals[1]
+
+#########
+#---For Loop (8/14)
+############################################
+If you want to do something with every item in the list, you can use a for loop. 
+
+    for variable in list_name:
+        # Do stuff!
+
+A variable name follows the for keyword; it will be assigned the value of each list item in turn.
+Then in 'list_name' designates 'list_name' as the list the loop will work on. The line ends with a colon (:) and 
+the indented code that follows it will be executed once per item in the list.
+
+#########
+#---For Loop: .sort() (9/14)
+############################################
+If your list is a jumbled mess, you may need to sort() it.
+
+    animals = ["cat", "ant", "bat"]
+    animals.sort()
+
+    for animal in animals:
+        print animal
+
+First, we create a list called animals with three strings. The strings are not in alphabetical order.
+Then, we sort animals into alphabetical order. Note that '.sort()' modifies the list rather than returning a new list.
+Then, for each item in animals, we print that item out as "ant", "bat", "cat" on their own line each.
+
+#########
+#---Dictionary (10/14)
+############################################
+A dictionary is similar to a list, but you access values by looking up a key instead of an index. A key can be any string or number. 
+Dictionaries are enclosed in curly braces, like so:
+
+    d = {'key1' : 1, 'key2' : 2, 'key3' : 3}
+
+This is a dictionary called d with three key-value pairs. The key 'key1' points to the value 1, 'key2' to 2, and so on.
+
+Ex: 
+Print the value of a key. Accessing dictionary values by key is just like accessing the list values by index:
+    
+    print d['key2'] #print 2
+
+#########
+#---Dictionary: New Entries (11/14)
+############################################
+Like Lists, Dictionaries are "mutable". This means they can be changed after they are created. 
+One advantage of this is that we can add new key/value pairs to the dictionary after it is created like so:
+
+    dict_name[new_key] = new_value
+
+An empty pair of curly braces {} is an empty dictionary, just like an empty pair of [] is an empty list.
+The length len() of a dictionary is the number of key-value pairs it has. Each pair counts only once, even if the value is a list. 
+(That's right: you can put lists inside dictionaries!)
+
+#########
+#---Dictionary: Deleting Entries (12/14)
+############################################
+Because dictionaries are mutable, they can be changed in many ways. Items can be removed from a dictionary with the del command:
+
+    del dict_name[key_name]
+
+will remove the key key_name and its associated value from the dictionary.
+A new value can be associated with a key by assigning a value to the key, like so:
+
+    dict_name[key] = new_value
+
+#########
+#---List: Removing Items .remove(item) (13/14)
+############################################
+ometimes you need to remove something from a list.
+
+    beatles = ["john","paul","george","ringo","stuart"]
+    beatles.remove("stuart")
+    print beatles
+    >> ["john","paul","george","ringo"]
+
+We create a list called beatles with 5 strings.
+Then, we remove the first item from beatles that matches the string "stuart". Note that .remove(item) does not return anything.
+Finally, we print out that list just to see that "stuart" was actually removed.
+
+#########
+#---Dictionary and List: Removing Items .remove(item) (14/14)
+#################################################################
+Let's go over a few last notes about dictionaries
+
+    my_dict = {
+        "fish": ["c", "a", "r", "p"],
+        "cash": -4483,
+        "luck": "good"
+    }
+    print my_dict["fish"][0]
+
+In the example above, we created a dictionary that holds many types of values.
+The key "fish" has a list, the key "cash" has an int, and the key "luck" has a string.
+Finally, we print the letter 'c'. When we access a value in the dictionary like my_dict["fish"], 
+we have direct access to that value. So we can access the item at index '0' in the list stored by the key "fish"
+
+Ex:
+1.  Add a key to inventory called 'pocket'
+2.  Set the value of 'pocket' to be a list consisting of the strings 'seashell', 'strange berry', and 'lint'
+3.  .sort() the items in the list stored under the 'backpack' key
+4.  Then .remove('dagger') from the list of items stored under the 'backpack' key
+5.  Add 50 to the number stored under the 'gold' key
+
+    inventory = {
+        'gold' : 500,
+        'pouch' : ['flint', 'twine', 'gemstone'], # Assigned a new list to 'pouch' key
+        'backpack' : ['xylophone','dagger', 'bedroll','bread loaf']
+    }
+
+    # Adding a key 'burlap bag' and assigning a list to it
+    inventory['burlap bag'] = ['apple', 'small ruby', 'three-toed sloth']
+
+    # Sorting the list found under the key 'pouch'
+    inventory['pouch'].sort() 
+
+    inventory['pocket'] = ['seashell', 'strange berry', 'lint']
+    inventory['backpack'].sort()
+    inventory['backpack'].remove('dagger')
+    inventory['gold'] += 50
+    print inventory
 
 #######################################
 #String Looping
